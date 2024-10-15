@@ -15,8 +15,8 @@ if (empty($_POST["name"])) {
     }
 
     // Validar correo electrónico
-    if ($_POST["email"] == "") {
-        $errors['email'] = "El correo electrónico es obligatorio.";
+if (empty($_POST["email"])) {
+    $errors['email'] = "El correo electrónico es obligatorio.";
     } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Formato de correo electrónico no válido.";
     } else {
@@ -57,7 +57,7 @@ if (empty($_POST["name"])) {
     <span style="color:red;"><?php echo isset($errors['name']) ? $errors['name'] : ''; ?></span><br><br>
 
     <label for="email">Correo Electrónico:</label>
-    <input type="text" name="email" value="<?php echo $email; ?>">
+<input type="text" name="email" value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>">
     <span style="color:red;"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span><br><br>
 
     <label for="password">Contraseña:</label>
